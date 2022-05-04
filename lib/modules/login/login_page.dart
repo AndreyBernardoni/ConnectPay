@@ -1,19 +1,21 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
+import 'package:bill_controll/shared/widgets/social_login/social_login_button.dart';
+import 'package:flutter/material.dart';
+import 'package:bill_controll/modules/login/login_controller.dart';
 import 'package:bill_controll/shared/themes/app_colors.dart';
 import 'package:bill_controll/shared/themes/app_images.dart';
 import 'package:bill_controll/shared/themes/app_text_style.dart';
-import 'package:bill_controll/shared/widgets/social_login/social_login_button.dart';
-import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -63,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(left: 40, right: 40, top: 40),
                     child: SocialLoginButton(
-                      onTap: () => print("Login with Google"),
+                      onTap: () => controller.googleSignIn(context),
                     ),
                   ),
                 ],

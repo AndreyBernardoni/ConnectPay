@@ -8,7 +8,7 @@ class BottomSheetWidget extends StatelessWidget {
   final VoidCallback primaryOnPressed;
   final String secondaryLabel;
   final VoidCallback secondaryOnPressed;
-  final String tittle;
+  final String title;
   final String subtitle;
 
   const BottomSheetWidget(
@@ -17,7 +17,7 @@ class BottomSheetWidget extends StatelessWidget {
       required this.primaryOnPressed,
       required this.secondaryLabel,
       required this.secondaryOnPressed,
-      required this.tittle,
+      required this.title,
       required this.subtitle})
       : super(key: key);
 
@@ -42,7 +42,7 @@ class BottomSheetWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(40),
                       child: Text.rich(
                         TextSpan(
-                          text: tittle,
+                          text: title,
                           style: TextStyles.buttonBoldHeading,
                           children: [
                             TextSpan(

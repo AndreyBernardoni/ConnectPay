@@ -13,7 +13,8 @@ class BarcodeScannerController {
   BarcodeScannerStatus get status => statusNotifier.value;
   set status(BarcodeScannerStatus status) => statusNotifier.value = status;
 
-  var barcodeScanner = GoogleMlKit.vision.barcodeScanner();
+  final barcodeScanner = GoogleMlKit.vision.barcodeScanner();
+
   CameraController? cameraController;
 
   InputImage? imagePicker;
@@ -38,7 +39,7 @@ class BarcodeScannerController {
       final barcodes = await barcodeScanner.processImage(inputImage);
       var barcode;
       for (Barcode item in barcodes) {
-        barcode = item.value;
+        barcode = item.displayValue;
       }
 
       if (barcode != null && status.barcode.isEmpty) {

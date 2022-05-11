@@ -19,7 +19,6 @@ class AppWidget extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: AppColors.primary));
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

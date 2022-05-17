@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/boleto_model.dart';
 
 class InsertBoletoController {
   final formKey = GlobalKey<FormState>();
+  bool verification = false;
   BoletoModel model = BoletoModel();
 
   String? validateName(String? value) =>
@@ -28,8 +30,19 @@ class InsertBoletoController {
     );
   }
 
+  Future<void> saveBoleto() async {
+    final instance = await SharedPreferences.getInstance();
+    final boletos = instance.getStringList("boletos") ?? <String>[];
+    boletos.add(model.toJson());
+    await instance.setStringList("boletos", boletos);
+    return;
+  }
+
   Future<void> cadastrarBoleto() async {
     final form = formKey.currentState;
-    if (form!.validate()) {}
+    if (form!.validate()) {
+      verification = true;
+      return await saveBoleto();
+    }
   }
 }

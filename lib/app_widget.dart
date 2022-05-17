@@ -9,6 +9,8 @@ import 'package:bill_controll/modules/home/home_page.dart';
 import 'package:bill_controll/modules/insert_boleto/insert_boleto_page.dart';
 import 'package:bill_controll/modules/splash/splash_page.dart';
 
+import 'shared/models/user_model.dart';
+
 class AppWidget extends StatelessWidget {
   AppWidget({Key? key}) : super(key: key) {
     SystemChrome.setPreferredOrientations([
@@ -31,10 +33,12 @@ class AppWidget extends StatelessWidget {
       initialRoute: "/splash",
       routes: {
         "/login": (context) => LoginPage(),
-        "/home": (context) => HomePage(),
+        "/home": (context) => HomePage(
+            user: ModalRoute.of(context)!.settings.arguments as UserModel),
         "/splash": (context) => SplashPage(),
         "/barcode_scanner": (context) => BarcodeScannerPage(),
-        "/insert_boleto": (context) => InsertBoletoPage(),
+        "/insert_boleto": (context) => InsertBoletoPage(
+            user: ModalRoute.of(context)!.settings.arguments as UserModel),
       },
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../shared/models/user_model.dart';
 import '../../shared/themes/app_colors.dart';
 import '../../shared/themes/app_text_style.dart';
 import '../../shared/widgets/input_text/input_text_widget.dart';
@@ -10,7 +11,9 @@ import 'insert_boleto_controller.dart';
 
 class InsertBoletoPage extends StatefulWidget {
   final String? barcode;
-  const InsertBoletoPage({Key? key, this.barcode}) : super(key: key);
+  final UserModel user;
+  const InsertBoletoPage({Key? key, this.barcode, required this.user})
+      : super(key: key);
 
   @override
   _InsertBoletoPageState createState() => _InsertBoletoPageState();
@@ -117,7 +120,9 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
         secondaryLabel: "Cadastrar",
         secondaryOnPressed: () async {
           await controller.cadastrarBoleto();
-          Navigator.pop(context);
+          if (controller.verification == true)
+            Navigator.pushReplacementNamed(context, "/home",
+                arguments: widget.user);
         },
       ),
     );
